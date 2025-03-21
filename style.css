@@ -5,3 +5,51 @@ body {
   background-size: cover;
   color: aliceblue;
 }
+
+.easy {
+  background-color: lightseagreen;
+}
+
+.medium {
+  background-color: khaki;
+}
+
+.hard {
+  background-color: rgb(255, 83, 71);
+}
+
+.redo {
+  background-color: thistle;
+  border: none;
+}
+
+.ask {
+  background-color: plum;
+  border: none;
+}
+
+:hover.redo {
+  background-color: lavender;
+}
+:active.redo {
+  background-color: lavender !important;
+}
+
+:hover.ask {
+  background-color: orchid;
+}
+
+:active.ask {
+  background-color: orchid !important;
+}
+.ez {
+  background-color: rgb(32, 178, 129) !important;
+}
+
+.med {
+  background-color: khaki !important;
+}
+
+.why {
+  background-color: rgb(253, 108, 98) !important;
+}

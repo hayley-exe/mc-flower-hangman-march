@@ -39,14 +39,26 @@ const wordList = [
 
 
 //setting game variables
-let selectWord = ''
+let selectedWord = ''
 let displayWord = ''
 let wrongGuess = 0
 let guessedLetters = []
 const maxMistakes = 6
 
 function startGame(level) {
-    selectWord = getRandomWord(level)
+    selectedWord = getRandomWord(level)
+
+    //update difficulty display
+    updateDifficultyDisplay(level)
+
+    //create placeholder's for the selected word
+    displayWord = '_'.repeat(selectedWord.length)
+
+    //display updated word length
+    document.getElementById('wordDisplay').textContent = displayWord.split('').join(' ')
+
+
+
 
     //hide difficulty selection and show game area & difficulty box
 
@@ -74,7 +86,23 @@ function startGame(level) {
     }
 }
 
+function updateDifficultyDisplay(level) {
+    let difficultyBox = document.getElementById('difficultyBox')
 
+    //remove any previous difficulty classes
+
+    difficultyBox.classList.remove('easy', 'medium', 'hard')
+
+    //set text & apply class dynamically using template literals
+    difficultyBox.textContent = `Difficulty: ${level.charAt(0).toUpperCase() + level.slice(1)}`
+
+    //apply css style for chosen difficulty
+    difficultyBox.classList.add(level)
+
+
+
+
+}
 
 
 
