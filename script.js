@@ -37,7 +37,6 @@ const wordList = [
     'grass'
 ]
 
-
 //setting game variables
 let selectedWord = ''
 let displayWord = ''
@@ -58,8 +57,6 @@ function startGame(level) {
     document.getElementById('wordDisplay').textContent = displayWord.split('').join(' ')
 
 
-
-
     //hide difficulty selection and show game area & difficulty box
 
     //add d-none to difficulty selection div 
@@ -70,8 +67,6 @@ function startGame(level) {
     // add d-block to difficultyBox & gameArea
     document.getElementById('gameArea').classList.add('d-block')
     document.getElementById('difficultyBox').classList.add('d-block')
-
-
 
 
     function getRandomWord(level) {
@@ -99,9 +94,39 @@ function updateDifficultyDisplay(level) {
     //apply css style for chosen difficulty
     difficultyBox.classList.add(level)
 
+}
 
+function guessLetter() {
+    let inputField = document.getElementById('letterInput')
+    let guessedLetter = inputField.value.toLowerCase()
 
+    //check if input is a valid letter (a-z)
+    if (!guessedLetter.match(/^[a-z]$/)) {
+        alert('guess a letter between a-z')
+        inputField.value = '' //clear input field
+        return //exit function
 
+    }
+
+    //check if letter was already guessed using .includes()
+    if (guessedLetters.includes(guessedLetter)) {
+        alert('you already guessed that one!')
+        inputField.value = '' //clear input field
+        return //exit function
+    } else {
+        //stored guessed letter in guessedLetters array
+        guessedLetters.push(guessedLetter)
+    }
+
+    //check if guessed letter is in selected word
+    if (selectedWord.includes(guessLetter)) {
+        correctGuess(guessedLetter)
+    } else {
+        wrongGuess(guessedLetter)
+    }
+
+    inputField.value = '' //clear input field
+    inputField.focus() //refocus input field for next guess
 }
 
 
