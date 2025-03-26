@@ -39,8 +39,8 @@ const wordList = [
 
 //setting game variables
 let selectedWord = ''
-let displayWord = ''
-let wrongGuess = 0
+let displayedWord = ''
+let wrongGuesses = 0
 let guessedLetters = []
 const maxMistakes = 6
 
@@ -51,10 +51,12 @@ function startGame(level) {
     updateDifficultyDisplay(level)
 
     //create placeholder's for the selected word
-    displayWord = '_'.repeat(selectedWord.length)
+    displayedWord = '_'.repeat(selectedWord.length)
 
     //display updated word length
-    document.getElementById('wordDisplay').textContent = displayWord.split('').join(' ')
+    document.getElementById('wordDisplay').textContent = displayedWord
+        .split('')
+        .join(' ')
 
 
     //hide difficulty selection and show game area & difficulty box
@@ -119,7 +121,7 @@ function guessLetter() {
     }
 
     //check if guessed letter is in selected word
-    if (selectedWord.includes(guessLetter)) {
+    if (selectedWord.includes(guessedLetter)) {
         correctGuess(guessedLetter)
     } else {
         wrongGuess(guessedLetter)
@@ -129,5 +131,50 @@ function guessLetter() {
     inputField.focus() //refocus input field for next guess
 }
 
+function wrongGuess(guessedLetter) {
+    wrongGuesses++   //increment number of wrong guesses
+    document.getElementById('wrongLetters').textContent += ` ${guessedLetter}`  //add guessed letter to HTML
+
+    document.getElementById('heart').src = `imgs/heart${6 - wrongGuesses}.png`
 
 
+
+
+    if (wrongGuesses === maxMistakes) {
+        endGame(false)
+    }
+}
+
+function correctGuess(guessedLetter) {
+    let newDisplayedWord = ''
+
+    for (let i = 0; i < selectedWord.length; i++) {
+        if (selectedWord[i] === guessedLetter) {
+            newDisplayedWord += guessedLetter
+        } else {
+            newDisplayedWord += displayedWord[i]
+        }
+    }
+
+    displayedWord = newDisplayedWord
+    document.getElementById('wordDisplay').textContent = displayedWord
+        .split('')
+        .join(' ')
+
+    if (!displayedWord.includes('_')) {
+        endGame(true)
+    }
+
+}
+
+function endGame(won) {
+    if (won === true) {
+        setTimeout(() => alert('yippee! you win'), 100)
+    } else {
+
+    }
+}
+
+function restartGame() {
+    location.reload()
+}
