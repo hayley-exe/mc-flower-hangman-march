@@ -53,3 +53,14 @@ body {
 .why {
   background-color: rgb(253, 108, 98) !important;
 }
+/* Apply scaling to heart images */
+.heart img,
+.empty-heart img {
+  width: 10%;
+  height: auto;
+}
+
+.heart,
+.empty-heart {
+  margin-right: 5px;
+}

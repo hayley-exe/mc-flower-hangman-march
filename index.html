@@ -14,8 +14,6 @@
 </head>
 
 <body>
-    <!--difficulty selection
--->
     <main class="container text-center">
         <h1>Hangman Flower Forest Edition</h1>
         <div id="difficultySelection">
@@ -25,71 +23,26 @@
             <button class="btn difficulty-btn why" onclick="startGame('hard')">Hard</button>
         </div>
 
-        <!--difficulty display box-->
-        <div id="difficultyBox" class="mt-3 p-3 fw-bold d-none"> <!--add back d-none class-->
-            placeholder text
-        </div>
+        <div id="difficultyBox" class="mt-3 p-3 fw-bold d-none">Difficulty: placeholder text</div>
 
-        <!--game area-->
-        <div id="gameArea" class="mt-4 d-none"> <!--add back d-none class-->
-            <!--word display-->
-            <h2 id="wordDisplay" class="mb-3">
-                _ _ _ _
-            </h2>
+        <div id="gameArea" class="mt-4 d-none">
+            <h2 id="wordDisplay" class="mb-3">_ _ _ _</h2>
 
-            <!--input for guessing-->
             <div>
-                <input type="text" id="letterInput" maxlength="16" class="form-control d-inline-block w-auto"
+                <input type="text" id="letterInput" maxlength="1" class="form-control d-inline-block w-auto"
                     placeholder="Guess a letter">
                 <button id="guessBtn" class="btn btn-warning ask" onclick="guessLetter()">Guess</button>
             </div>
 
-            <!--wrong guess list-->
-            <p id="wrongLetters" class="fw-bold"> Wrong Guesses: </p>
+            <p id="wrongLetters" class="fw-bold">Wrong Guesses:</p>
 
-            <div id="heart"></div>
+            <div id="heart-container"></div>
 
-
-
-            <!--restart button-->
             <div class="mt-4">
                 <button id="restartBtn" class="btn btn-danger redo" onclick="restartGame()">Restart Game</button>
-
-
-
-
             </div>
-
-
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </main>
-
-
-
-
-
-
-
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
