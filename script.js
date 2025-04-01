@@ -130,7 +130,7 @@ function wrongGuess(guessedLetter) {
     wrongGuesses++;
     document.getElementById('wrongLetters').textContent += ` ${guessedLetter}`;
     lifeSystem.loseLife(); // Update the heart life system
-
+    incorrectSound.play()
     if (wrongGuesses === maxMistakes) {
         endGame(false); // End the game if the player loses
     }
@@ -138,6 +138,7 @@ function wrongGuess(guessedLetter) {
 
 function correctGuess(guessedLetter) {
     let newDisplayedWord = '';
+    correctSound.play()
     for (let i = 0; i < selectedWord.length; i++) {
         if (selectedWord[i] === guessedLetter) {
             newDisplayedWord += guessedLetter;
@@ -165,3 +166,29 @@ function endGame(won) {
 function restartGame() {
     location.reload();
 }
+// enter btn
+document.getElementById('letterInput').addEventListener('keydown', function (event) {
+    // If Enter key (key code 13 or 'Enter') is pressed, call guessLetter
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent default action (like form submission)
+        guessLetter(); // Trigger guessLetter function
+    }
+});
+
+
+// Define a variable for the correct guess sound
+const correctSound = new Audio('exp.mp3');
+
+// Define a variable for the incorrect guess sound
+const incorrectSound = new Audio('hit.mp3');
+
+// Inside the guessLetter function:
+if (wordToGuess.includes(guessedLetter)) {
+    // Play the correct sound
+    correctSound.play();
+} else {
+    // Play the incorrect sound
+    incorrectSound.play();
+}
+
+
