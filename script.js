@@ -164,8 +164,23 @@ function endGame(won) {
 }
 
 function restartGame() {
-    location.reload();
+    // Reset all variables and UI elements
+    document.getElementById('difficultySelection').classList.remove('d-none');
+    document.getElementById('difficultyBox').classList.add('d-none');
+    document.getElementById('gameArea').classList.add('d-none');
+
+    // Reset UI elements
+    document.getElementById('wordDisplay').innerText = '_ _ _ _'; // Reset word display
+    document.getElementById('wrongLetters').innerText = 'Wrong Guesses:'; // Clear wrong guesses
+    document.getElementById('heart-container').innerHTML = ''; // Clear hearts
+
+    // Reset game variables
+    currentWord = '';
+    guessedLetters = [];
+    wrongGuesses = [];
+    attemptsLeft = maxAttempts;
 }
+
 // enter btn
 document.getElementById('letterInput').addEventListener('keydown', function (event) {
     // If Enter key (key code 13 or 'Enter') is pressed, call guessLetter
